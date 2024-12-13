@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FutbolNet.MainPage"
+             BackgroundColor="#2C3E50">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <!-- Estilo para el título -->
+            <Style x:Key="Headline" TargetType="Label">
+                <Setter Property="FontSize" Value="30"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+            </Style>
+
+            <!-- Estilo para los botones -->
+            <Style x:Key="ButtonStyle" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="#4CAF50"/>
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="HeightRequest" Value="50"/>
+                <Setter Property="WidthRequest" Value="200"/>
+                <Setter Property="CornerRadius" Value="25"/>
+                <Setter Property="Padding" Value="10"/>
+                <Setter Property="Margin" Value="5"/>
+            </Style>
+
+            <!-- Estilo para botones destacados -->
+            <Style x:Key="HighlightedButtonStyle" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="#FF9800"/>
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="HeightRequest" Value="50"/>
+                <Setter Property="WidthRequest" Value="200"/>
+                <Setter Property="CornerRadius" Value="25"/>
+                <Setter Property="Padding" Value="10"/>
+                <Setter Property="Margin" Value="5"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout
+            Padding="30,0"
+            Spacing="25">
+
+            <!-- Imagen de fondo -->
+            <Image Source="futbol.png"
+                   Aspect="AspectFill"
+                   HeightRequest="250"
+                   HorizontalOptions="FillAndExpand"
+                   VerticalOptions="Center"/>
+
+            <!-- Título de la página con fondo degradado -->
+            <Label
+                Text="KENJHI FC"
+                Style="{StaticResource Headline}"
+                SemanticProperties.HeadingLevel="Level1"
+                BackgroundColor="Transparent">
+                <Label.Background>
+                    <LinearGradientBrush>
+                        <LinearGradientBrush.GradientStops>
+                            <GradientStop Color="#FF9800" Offset="0"/>
+                            <GradientStop Color="#4CAF50" Offset="1"/>
+                        </LinearGradientBrush.GradientStops>
+                    </LinearGradientBrush>
+                </Label.Background>
+            </Label>
+
+            <!-- Subtítulo -->
+            <Label Text="El hogar de la pasión por el fútbol"
+                   FontSize="16"
+                   FontAttributes="Italic"
+                   HorizontalOptions="Center"
+                   TextColor="White" />
+
+            <!-- Botones -->
+            <Button
+                Text="Jugador"
+                Clicked="JugadorBtn_Clicked"
+                HorizontalOptions="Fill"
+                Style="{StaticResource ButtonStyle}" />
+
+            <Button
+                Text="Liga"
+                Clicked="LigaBtn_Clicked_1"
+                HorizontalOptions="Fill"
+                Style="{StaticResource HighlightedButtonStyle}" />
+
+            <Button
+                Text="Entrenador"
+                Clicked="EntrenadorBtn_Clicked_1"
+                HorizontalOptions="Fill"
+                Style="{StaticResource ButtonStyle}" />
+
+            <Button
+                Text="Equipo"
+                Clicked="EquipoBtn_Clicked"
+                HorizontalOptions="Fill"
+                Style="{StaticResource ButtonStyle}" />
+
+            <Button
+                Text="Partido"
+                Clicked="PartidoBtn_Clicked"
+                HorizontalOptions="Fill"
+                Style="{StaticResource HighlightedButtonStyle}" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

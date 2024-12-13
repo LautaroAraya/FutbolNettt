@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:FutbolNet.ViewModels"
+             x:Class="FutbolNet.Views.Equipos.EquipoView"
+             Title="EquipoView">
+
+    <!-- Bind ViewModel -->
+    <ContentPage.BindingContext>
+        <viewmodels:EquiposViewModel />
+    </ContentPage.BindingContext>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="15" Spacing="20">
+
+            <!-- Title -->
+            <Label Text="Lista de Equipos"
+                   FontSize="24"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Start"
+                   TextColor="White" />
+
+            <!-- Activity Indicator -->
+            <ActivityIndicator IsRunning="{Binding ActivityStart}"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center" />
+
+            <!-- Equipos List -->
+            <CollectionView x:Name="CollectionView"
+                            ItemsSource="{Binding Equipos}"
+                            SelectedItem="{Binding EquipoCurrent, Mode=TwoWay}"
+                            SelectionMode="Single"
+                            VerticalOptions="FillAndExpand">
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Padding="10" Margin="5">
+
+                            <!-- Background card -->
+                            <BoxView Color="White" 
+                                     CornerRadius="10" 
+                                     HeightRequest="1" 
+                                     HorizontalOptions="Fill" 
+                                     VerticalOptions="FillAndExpand" />
+
+                            <!-- Content of the item -->
+                            <VerticalStackLayout Spacing="10">
+                                <Label Text="{Binding Equipo.Nombre}"
+                                       FontSize="Medium"
+                                       FontAttributes="Bold"
+                                       TextColor="White" />
+                                <Label Text="{Binding Equipo.Estadio}"
+                                       FontSize="Small"
+                                       TextColor="White" />
+                                <Label Text="{Binding Entrenador.Nombre}"
+                                        FontSize="Small"
+                                        TextColor="White" />
+
+                            </VerticalStackLayout>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <!-- Action Buttons (Vertical Layout) -->
+            <VerticalStackLayout Spacing="20" HorizontalOptions="Center">
+                <Button Text="Agregar"
+                        WidthRequest="150"
+                        Command="{Binding AgregarCommand}"
+                        BackgroundColor="#4CAF50"
+                        TextColor="Black"
+                        CornerRadius="25"
+                        Padding="10" />
+
+                <Button Text="Editar"
+                        WidthRequest="150"
+                        Command="{Binding EditarCommand}"
+                        BackgroundColor="#FF9800"
+                        TextColor="Black"
+                        CornerRadius="25"
+                        Padding="10" />
+
+                <Button Text="Eliminar"
+                        WidthRequest="150"
+                        Command="{Binding EliminarCommand}"
+                        BackgroundColor="#F44336"
+                        TextColor="Black"
+                        CornerRadius="25"
+                        Padding="10" />
+            </VerticalStackLayout>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

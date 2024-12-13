@@ -1,0 +1,54 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:FutbolNet.ViewModels"
+             x:Class="FutbolNet.Views.Equipos.AddEditEquipoView"
+             Title="AddEditEquipoView">
+    <ContentPage.BindingContext>
+        <viewmodels:AddEditEquipoViewModel />
+    </ContentPage.BindingContext>
+
+    <VerticalStackLayout Padding="20" Spacing="30" BackgroundColor="#2C3E50">
+        <!-- Title -->
+        <Label Text="Agregar/Editar Equipo"
+               FontSize="24"
+               FontAttributes="Bold"
+               HorizontalOptions="Center"
+               TextColor="White" />
+
+        <!-- Form Fields -->
+        <Grid RowDefinitions="Auto, Auto, Auto" ColumnDefinitions="*,*">
+            <!-- Nombre Field -->
+            <Label Text="Nombre:" Grid.Row="0" Grid.Column="0" VerticalTextAlignment="End" TextColor="White"/>
+            <Entry Text="{Binding Equipo.Nombre}" Grid.Row="0" Grid.Column="1" Placeholder="Ingrese el nombre" BackgroundColor="Black" TextColor="White" HeightRequest="50" />
+
+            <!-- Nombre del Estadio Field -->
+            <Label Text="Nombre del estadio:" Grid.Row="1" Grid.Column="0" VerticalTextAlignment="End" TextColor="White"/>
+            <Entry Text="{Binding Equipo.Estadio}" Grid.Row="1" Grid.Column="1" Placeholder="Ingrese el nombre" BackgroundColor="Black" TextColor="White" HeightRequest="50" />
+
+
+            <!-- Nombre del Entrenador Field -->
+            <Label Text="Nombre del entrenador:" Grid.Row="2" Grid.Column="0" VerticalTextAlignment="End" TextColor="White"/>
+            <Picker SelectedItem="{Binding Entrenador}" Grid.Row="2" Grid.Column="1" ItemsSource="{Binding Entrenadores}" ItemDisplayBinding="{Binding Nombre}" BackgroundColor="Black" />
+        </Grid>
+
+        <!-- Action Buttons -->
+        <HorizontalStackLayout Spacing="30" HorizontalOptions="Center">
+            <Button Text="Guardar"
+                    Command="{Binding GuardarCommand}"
+                    BackgroundColor="#4CAF50"
+                    TextColor="White"
+                    WidthRequest="150"
+                    HeightRequest="50"
+                    CornerRadius="25"
+                    Padding="10"/>
+            <Button Text="Cancelar"
+                    Command="{Binding CancelarCommand}"
+                    BackgroundColor="#FF5722"
+                    TextColor="White"
+                    WidthRequest="150"
+                    HeightRequest="50"
+                    CornerRadius="25"
+                    Padding="10"/>
+        </HorizontalStackLayout>
+    </VerticalStackLayout>
+</ContentPage>

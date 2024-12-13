@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:FutbolNet.ViewModels"
+             x:Class="FutbolNet.Views.Ligas.AddEditLigaView"
+             Title="AddEditLigaView">
+    <ContentPage.BindingContext>
+        <viewmodels:AddEditLigaViewModel />
+    </ContentPage.BindingContext>
+
+    <VerticalStackLayout Padding="20" Spacing="30" BackgroundColor="#2C3E50">
+        <!-- Title -->
+        <Label Text="Agregar/Editar Liga"
+           FontSize="24"
+           FontAttributes="Bold"
+           HorizontalOptions="Center"
+           TextColor="White" />
+
+        <!-- Form Fields -->
+        <Grid RowDefinitions="Auto, Auto" ColumnDefinitions="*,*">
+            <!-- Nombre Field -->
+            <Label Text="Nombre:" Grid.Row="0" Grid.Column="0" VerticalTextAlignment="End" TextColor="White"/>
+            <Entry Text="{Binding Liga.Nombre}" Grid.Row="0" Grid.Column="1" Placeholder="Ingrese el nombre de la liga"
+               BackgroundColor="White" TextColor="Black" HeightRequest="50" />
+        </Grid>
+
+        <!-- Action Buttons -->
+        <HorizontalStackLayout Spacing="30" HorizontalOptions="Center">
+            <Button Text="Guardar"
+                Command="{Binding GuardarCommand}"
+                BackgroundColor="#4CAF50"
+                TextColor="White"
+                WidthRequest="150"
+                HeightRequest="50"
+                CornerRadius="25"
+                Padding="10"/>
+            <Button Text="Cancelar"
+                Command="{Binding CancelarCommand}"
+                BackgroundColor="#FF5722"
+                TextColor="White"
+                WidthRequest="150"
+                HeightRequest="50"
+                CornerRadius="25"
+                Padding="10"/>
+        </HorizontalStackLayout>
+    </VerticalStackLayout>
+</ContentPage>
