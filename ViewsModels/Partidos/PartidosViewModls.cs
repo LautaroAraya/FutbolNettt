@@ -123,31 +123,12 @@ namespace FutbolNet.ViewModels
         {
             if (PartidoCurrent != null)
             {
-                PartidoCurrent.Partido.EquipoLocalId = PartidoCurrent.EquipoLocal?.Id ?? 0;
-                PartidoCurrent.Partido.EquipoVisitanteId = PartidoCurrent.EquipoVisitante?.Id ?? 0;
+                WeakReferenceMessenger.Default.Send(new MyMessage("AbrirAddEditPartidoView") { Partido = PartidoCurrent.Partido });
             }
-            WeakReferenceMessenger.Default.Send(new MyMessage("AbrirAddEditPartidoView") { Partido = PartidoCurrent.Partido });
         }
 
         private async void Agregar(object obj)
         {
-            if (partidoCurrent != null)
-            {
-                if (PartidoCurrent.EquipoLocal?.Id == 0 && !string.IsNullOrEmpty(PartidoCurrent.EquipoLocal?.Nombre))
-                {
-                    var equipoLocal = await equipoService.GetAllAsync();
-                    PartidoCurrent.EquipoLocal.Id = equipoLocal.FirstOrDefault(e => e.Nombre == PartidoCurrent.EquipoLocal.Nombre)?.Id ?? 0;
-                }
-
-                if (PartidoCurrent.EquipoVisitante?.Id == 0 && !string.IsNullOrEmpty(PartidoCurrent.EquipoVisitante?.Nombre))
-                {
-                    var equipoVisitante = await equipoService.GetAllAsync();
-                    PartidoCurrent.EquipoVisitante.Id = equipoVisitante.FirstOrDefault(e => e.Nombre == PartidoCurrent.EquipoVisitante.Nombre)?.Id ?? 0;
-                }
-
-                PartidoCurrent.Partido.EquipoLocalId = PartidoCurrent.EquipoLocal?.Id ?? 0;
-                PartidoCurrent.Partido.EquipoVisitanteId = PartidoCurrent.EquipoVisitante?.Id ?? 0;
-            }
             WeakReferenceMessenger.Default.Send(new MyMessage("AbrirAddEditPartidoView"));
         }
 
